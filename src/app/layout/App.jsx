@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Container} from 'semantic-ui-react';
-import { Route} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import EventDashboard from '../../features/event/EventDashboard/EventDashboard';
 import EventDetailedPage from '../../features/event/EventDetailed/EventDetailedPage';
 import UserDetailedPage from '../../features/user/UserDetailed/UserDetailedPage';
@@ -15,16 +15,36 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <Container className="main">
-          <Route path='/' exact component={HomePage} />
-          <Route path='/events' component={EventDashboard} />
-          <Route path='/events/:id' component={EventDetailedPage} />
-          <Route path='/people' component={PeopleDashboard} />
-          <Route path='/profile/:id' component={UserDetailedPage} />
-          <Route path='/settings' component={SettingsDashboard} />
-          <Route path='/createEvent' component={EventForm} />
-        </Container>
+        <div>
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+          </Switch>
+          <Route
+            path='/(.+)'
+            render={() => (
+              <div>
+                <NavBar/>
+                <Container className="main">
+                <Switch>
+                  <Route path='/events' component={EventDashboard} />
+                  <Route path='/events/:id' component={EventDetailedPage} />
+                  <Route path='/people' component={PeopleDashboard} />
+                  <Route path='/profile/:id' component={UserDetailedPage} />
+                  <Route path='/settings' component={SettingsDashboard} />
+                  <Route path='/createEvent' component={EventForm} />
+                </Switch>
+                </Container>
+              </div>
+
+            )}
+          >
+
+          </Route>
+
+        </div>
+        
+        
+        
 
       </div>
     );
