@@ -6,6 +6,7 @@ import BasicPage from './BasicPage';
 import AboutPage from './AboutPage';
 import PhotoPage from './PhotosPage';
 import AccountPage from './AccountPage';
+import testComponent from '../../testarea/testComponent';
 
 class SettingsDashboard extends Component {
   render() {
@@ -16,6 +17,7 @@ class SettingsDashboard extends Component {
           <Switch>
             <Redirect exact from="/settings" to="/settings/basic" />
             <Route path='/settings/basic' component={BasicPage} />
+            <Route path='/settings/test' component={testComponent} />
             <Route path="/settings/about" component={AboutPage} />
             <Route path="/settings/photo" component={PhotoPage} />
             <Route path="/settings/account" component={AccountPage} />
