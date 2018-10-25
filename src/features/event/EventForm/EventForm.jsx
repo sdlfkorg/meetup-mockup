@@ -89,26 +89,6 @@ class EventForm extends Component {
                 component={TextInput}
                 placeholder="Event date"
               />
-              {/* <Form.Field>
-                  <label>Event Title</label>
-                  <input name="title" onChange={this.onInputChnage} value={event.title} placeholder="Event Title" />
-              </Form.Field>
-              <Form.Field>
-                    <label>Event Date</label>
-                    <input name="date" onChange={this.onInputChnage} value={event.date} type="date" placeholder="Event Date" />
-                </Form.Field>
-                <Form.Field>
-                    <label>City</label>
-                    <input name="city" onChange={this.onInputChnage} value={event.city} placeholder="City event is taking place" />
-                </Form.Field>
-                <Form.Field>
-                    <label>Venue</label>
-                    <input name="venue" onChange={this.onInputChnage} value={event.venue} placeholder="Enter the Venue of the event" />
-                </Form.Field>
-                <Form.Field>
-                    <label>Hosted By</label>
-                    <input name="hostedBy" onChange={this.onInputChnage} value={event.hostedBy} placeholder="Enter the name of person hosting" />
-                </Form.Field> */}
               <Button positive type="submit">
                 Submit
               </Button>
