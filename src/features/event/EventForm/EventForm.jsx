@@ -5,6 +5,7 @@ import cuid from "cuid";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
+import TextArea from "../../../app/common/form/TextArea";
 
 const actions = {
   createEvent,
@@ -67,7 +68,8 @@ class EventForm extends Component {
               <Field
                 name="description"
                 type="text"
-                component={TextInput}
+                rows={3}
+                component={TextArea}
                 placeholder="Tell more about the event"
               />
               <Header sub color="teal" content="Event Location" />
