@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
+import moment from 'moment';
 import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan} from 'revalidate';
 import cuid from "cuid";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
@@ -8,6 +9,7 @@ import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
+import DateInput from "../../../app/common/form/DateInput";
 
 const actions = {
   createEvent,
@@ -42,11 +44,13 @@ const validate = combineValidators({
         hasLengthGreaterThan(4)({message: 'Description need to be greater than 4 characters.'})
     )(),
     city: isRequired({message: 'Event location is need.'}),
-    venue: isRequired({message: 'Event venue is need.'})
+    venue: isRequired({message: 'Event venue is need.'}),
+    date: isRequired({message: 'Event date is need.'})
 })
 
 class EventForm extends Component {
   onFormSubmit = values => {
+    values.date = moment(values.date).format();
     if (this.props.initialValues.id) {
       this.props.updateEvent(values);
       this.props.history.goBack();
@@ -107,7 +111,10 @@ class EventForm extends Component {
               <Field
                 name="date"
                 type="text"
-                component={TextInput}
+                component={DateInput}
+                dateFormat='YYYY-MM-DD HH:mm'
+                timeFormat='HH:mm'
+                showTimeSelect
                 placeholder="Event date"
               />
               <Button disabled={invalid || submitting || pristine} positive type="submit">
