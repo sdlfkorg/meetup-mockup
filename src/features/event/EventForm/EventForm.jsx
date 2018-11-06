@@ -64,17 +64,33 @@ class EventForm extends Component {
       result => getLatLng(result[0])
     ).then(
       latlng => {
+        // console.log('latlng: ', latlng);
         this.setState({
           cityLatLng:latlng
-        })
+        });
       }
     ).then(() => {
       this.props.change('city', selectedCity)
     })
   }
 
+  handleVenueSelected = (selectedVenue) => {
+    geocodeByAddress(selectedVenue).then(
+      result => getLatLng(result[0])
+    ).then(
+      latlng => {
+        this.setState({
+          venueLatLng:latlng
+        })
+      }
+    ).then(() => {
+      this.props.change('venue', selectedVenue)
+    })
+  }
+
   onFormSubmit = values => {
     values.date = moment(values.date).format();
+    values.venueLatLng = this.state.venueLatLng;
     if (this.props.initialValues.id) {
       this.props.updateEvent(values);
       this.props.history.goBack();
@@ -148,6 +164,7 @@ class EventForm extends Component {
                   type:['(establishment)']
                 }}
                 placeholder="Event venue"
+                onSelect={this.handleVenueSelected}
               />}
               <Field
                 name="date"
